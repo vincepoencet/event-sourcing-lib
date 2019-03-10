@@ -1,6 +1,6 @@
 {
   "name": "event-sourcing-lib",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -20,8 +20,7 @@
     "prettier": "^1.16.4",
     "tslint": "^5.13.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.3.3333",
-    "publish": "npm publish"
+    "typescript": "^3.3.3333"
   },
   "files": ["lib/**/*"]
 }
