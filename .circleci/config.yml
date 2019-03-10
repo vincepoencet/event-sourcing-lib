@@ -7,16 +7,16 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package.json" }}
       - run: 
-        name: update-yarn
-        command: yarn
+          name: update-yarn
+          command: yarn
       - save_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
-        paths:
-          - ./node_modules
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - run:
-        name: build
-        command: yarn build
+          name: build
+          command: yarn build
       
       
