@@ -1,13 +1,9 @@
 version: 2.1
 
-defaults: &defaults {
-  docker:
-    - image: circleci/node:8
-}
-
 jobs:
   build:
-    <<: *defaults  
+    docker:
+      - image: circleci/node:8
     steps:
       - checkout
       - restore_cache:
