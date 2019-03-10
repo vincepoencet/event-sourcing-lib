@@ -1,6 +1,4 @@
 const createTableText = `
-drop table events;
-
 create table if not exists events (
   id serial primary key not null,
   aggregate_id uuid not null,

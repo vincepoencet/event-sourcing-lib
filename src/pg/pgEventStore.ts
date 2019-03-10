@@ -2,13 +2,18 @@ import { IConflictResolver } from '../ConflictResolver';
 import { Event } from '../Event';
 import { IEventBus } from '../EventBus';
 import { IEventStore } from '../EventStore';
+import { migrate } from './migrations/eventTable';
 
 export class PgEventStore implements IEventStore {
+  private isMigrationDone = false;
+
   constructor(
     readonly client,
     readonly eventbus: IEventBus,
     readonly conflictResolver: IConflictResolver,
-  ) {}
+  ) {
+
+  }
 
   public async saveEvents(
     aggregateId: string,
@@ -16,6 +21,11 @@ export class PgEventStore implements IEventStore {
     expectedVersion: number,
     metadata: any,
   ): Promise<void> {
+    if (!this.isMigrationDone) {
+      await migrate(this.client);
+      this.isMigrationDone = true;
+    }
+
     for (const event of events) {
       try {
         await this.client.query(
